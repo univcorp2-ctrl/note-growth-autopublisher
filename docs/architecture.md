@@ -19,25 +19,11 @@ flowchart TD
 
 ## コンポーネント
 
-### Collector
-
-`src/note_growth/collector.py` が公開URLとRSSを取得します。note.comの `/api/*` のような非公式APIらしきパスはブロックします。
-
-### Analyzer
-
-`src/note_growth/analyzer.py` がソース本文から頻出語、読者ニーズ、買われやすい記事構造を抽出します。
-
-### Writer
-
-`src/note_growth/writer.py` が調査結果をもとに、独自構成の記事Markdownを生成します。禁止表現、過度な収益保証、ソースとの類似度をチェックします。
-
-### Publisher
-
-`src/note_growth/publisher.py` が投稿用Markdown、チェックリスト、メタデータ、manifestを `outputs/outbox/` に出力します。noteへの直接投稿は、公式公開APIがないため実装していません。
-
-### Metrics Analyzer
-
-`src/note_growth/metrics.py` が投稿後CSVを読み、表示数、スキ、コメント、販売数から改善案を生成します。
+- Collector: 公開URLとRSSを取得します。note.comの `/api/*` のような非公式APIらしきパスはブロックします。
+- Analyzer: ソース本文から頻出語、読者ニーズ、買われやすい記事構造を抽出します。
+- Writer: 調査結果をもとに、独自構成の記事Markdownを生成します。禁止表現、過度な収益保証、ソースとの類似度をチェックします。
+- Publisher: 投稿用Markdown、チェックリスト、メタデータ、manifestを `outputs/outbox/` に出力します。noteへの直接投稿は、公式公開APIがないため実装していません。
+- Metrics Analyzer: 投稿後CSVを読み、表示数、スキ、コメント、販売数から改善案を生成します。
 
 ## CI/CD
 
