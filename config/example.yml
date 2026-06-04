@@ -27,7 +27,6 @@ research:
 
 generation:
   output_dir: "outputs"
-  article_count: 1
   originality_max_similarity: 0.32
 
 publication:
