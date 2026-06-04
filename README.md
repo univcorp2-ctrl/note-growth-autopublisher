@@ -4,7 +4,7 @@ note.com向けに、公開情報の調査、売れやすい記事構造の抽出
 
 重要: note公式ヘルプでは、現在noteが公式公開しているAPIはないとされています。そのため、このリポジトリは非公式API、ログインセッションの流用、Selenium等によるログイン自動操作、`/api/*` への直接アクセスを実装しません。自動生成された投稿用Markdownをnote公式画面へ貼り付ける、またはnoteプレミアム等の公式予約投稿機能で運用する前提です。
 
-## 何を自動化するか
+## 自動化する内容
 
 1. 公開URL/RSSから、売れているnote記事・公式市場分析・競合記事の傾向を収集
 2. 「テーマ」「読者」「買われる理由」「無料部分で提示すべき価値」を抽出
@@ -57,20 +57,4 @@ note.com自体への完全自動投稿は、公式公開APIがないため、こ
 - 反応分析レポート
 - 次回の改善案
 
-将来、noteが公式投稿APIを公開した場合は `src/note_growth/publisher.py` のPublisher Adapterに公式API adapterを追加できます。
-
-## 主なファイル
-
-- `src/note_growth/cli.py`: CLI入口
-- `src/note_growth/collector.py`: 公開URL/RSS収集
-- `src/note_growth/analyzer.py`: 傾向分析
-- `src/note_growth/writer.py`: オリジナル記事生成
-- `src/note_growth/publisher.py`: 投稿用artifact生成
-- `src/note_growth/metrics.py`: 反応分析と改善案生成
-- `docs/architecture.md`: 全体設計
-- `docs/setup.md`: 初期設定と運用方法
-- `docs/research-notes.md`: 調査結果メモ
-
-## 注意
-
-収益保証、誇大広告、無断転載、有料記事のコピー、情報商材的な煽りを避ける設計です。記事本文にも、成果を保証しない表現と読者が検証可能な行動計画を入れる方針です。
+将来、noteが公式投稿APIを公開した場合は `src/note_growth/core.py` のPublisher Adapterに公式API adapterを追加できます。
