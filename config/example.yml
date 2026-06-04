@@ -1,0 +1,37 @@
+brand:
+  name: "note収益化ラボ"
+  voice: "実務的で誠実。煽らず、具体的に、読者が今日1つ実行できる文章。"
+
+strategy:
+  theme: "AI活用・SNS運用・複業/在宅ワーク領域で、買われる実用ノウハウ記事を作る"
+  target_reader: "noteで有料記事やメンバーシップを伸ばしたい個人クリエイター、副業初心者、AI活用に関心がある人"
+  paid_boundary_marker: "<!-- paid_boundary -->"
+  prohibited_claims:
+    - "必ず儲かる"
+    - "絶対稼げる"
+    - "誰でも簡単に稼げる"
+    - "楽して稼げる"
+    - "保証します"
+
+research:
+  max_sources: 8
+  sources:
+    - label: "note公式: 約30万件の有料記事分析"
+      url: "https://note.jp/n/n8522197d1ced"
+    - label: "note公式: 定期購読マガジン活用"
+      url: "https://note.com/notemag/n/n5a510b7ebfe0"
+    - label: "noteヘルプ: 定期購読マガジンとは"
+      url: "https://www.help-note.com/hc/ja/articles/360000390782-%E5%AE%9A%E6%9C%9F%E8%B3%BC%E8%AA%AD%E3%83%9E%E3%82%AC%E3%82%B8%E3%83%B3%E3%81%A8%E3%81%AF"
+  rss:
+    - url: "https://note.com/notemag/rss"
+
+generation:
+  output_dir: "outputs"
+  article_count: 1
+  originality_max_similarity: 0.32
+
+publication:
+  mode: "artifact"
+
+metrics:
+  csv_path: "data/sample_metrics.csv"
