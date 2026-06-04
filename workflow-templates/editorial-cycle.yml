@@ -1,0 +1,60 @@
+name: Editorial Cycle
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Optional article topic override"
+        required: false
+        default: ""
+  schedule:
+    - cron: "0 23 */2 * *"
+  push:
+    branches: [main]
+    paths:
+      - "config/**"
+      - "src/**"
+      - ".github/workflows/editorial-cycle.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "config/**"
+      - "src/**"
+      - ".github/workflows/editorial-cycle.yml"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run editorial cycle
+        env:
+          TOPIC: ${{ github.event.inputs.topic }}
+        run: |
+          if [ -n "$TOPIC" ]; then
+            note-growth run-cycle --config config/example.yml --topic "$TOPIC"
+          else
+            note-growth run-cycle --config config/example.yml
+          fi
+
+      - name: Upload note growth outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: note-growth-outputs
+          path: outputs/
+          if-no-files-found: error
