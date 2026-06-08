@@ -47,9 +47,9 @@ jobs:
           TOPIC: ${{ github.event.inputs.topic }}
         run: |
           if [ -n "$TOPIC" ]; then
-            note-growth run-cycle --config config/example.yml --topic "$TOPIC"
+            note-growth --config config/example.yml run-cycle --topic "$TOPIC"
           else
-            note-growth run-cycle --config config/example.yml
+            note-growth --config config/example.yml run-cycle
           fi
 
       - name: Upload note growth outputs
