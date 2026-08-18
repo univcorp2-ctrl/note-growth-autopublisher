@@ -8,7 +8,9 @@ on:
         required: false
         default: ""
   schedule:
-    - cron: "0 23 */2 * *"
+    # 08:05 JST every other day. Keeping the cron in the default branch also
+    # makes the production cadence explicit for GitHub Actions scheduling.
+    - cron: "5 23 */2 * *"
   push:
     branches: [main]
     paths:
@@ -22,9 +24,14 @@ on:
       - "src/**"
       - ".github/workflows/editorial-cycle.yml"
 
+concurrency:
+  group: editorial-cycle-production
+  cancel-in-progress: false
+
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
     steps:
